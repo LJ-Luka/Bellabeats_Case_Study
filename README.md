@@ -1,2 +1,2 @@
-# LJ-Luka.github.io-GoogleCapstone
-Testing
+# Capstone Project: Bellabeat Case Study
+Testing. Is this working?
