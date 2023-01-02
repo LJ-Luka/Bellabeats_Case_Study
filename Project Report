@@ -623,22 +623,6 @@ We want to keep users active. We can collect data from the users on why if for a
 
 
 ***Thank you***
-
-
-
-
-
-
-
-
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-
-
-```{r , echo=FALSE}
-
-```
-
