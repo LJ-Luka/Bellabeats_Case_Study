@@ -12,4 +12,6 @@ Srsen, the Chief Creative officer, knows that growth opportunities would be reve
 I am a junior data analyst working on the marketing analyst team at Bellabeat, a high-tech manufacturer of health-focused products for women.
 The marketing analytics team was asked to focus on a Bellabeat product and analyze smart device usage data in order to gain insight into how people are already using their smart devices. Then, using this information, we are expected to come up with a high-level recommendations for how these trends can inform Bellabeat marketing strategy.
 
-Using the steps in the data analysis process, Ask, Prepare, Process, Analyse, Share and Act, the task was completed. See final report [here](https://github.com/LJ-Luka/LJ-Luka.github.io-GoogleCapstone/blob/main/file_show.docx) 
+Using the steps in the data analysis process, Ask, Prepare, Process, Analyse, Share and Act, the task was completed. See final report by downloading the word document [here](https://github.com/LJ-Luka/LJ-Luka.github.io-GoogleCapstone/blob/main/file_show.docx) 
+It can also be viewed on [link](https://github.com/LJ-Luka/LJ-Luka.github.io-GoogleCapstone/blob/main/index.md), but the graphs are not coming up.
+
