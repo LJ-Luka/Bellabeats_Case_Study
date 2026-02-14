@@ -128,109 +128,11 @@ visualising the data.
 
 Load the packages. They are already installed and up to date.
 
-``` r
-#load packages
-
-library(tidyverse)
-```
-
-    ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-    ## ✔ ggplot2 3.4.0      ✔ purrr   0.3.4 
-    ## ✔ tibble  3.1.7      ✔ dplyr   1.0.10
-    ## ✔ tidyr   1.2.1      ✔ stringr 1.5.0 
-    ## ✔ readr   2.1.3      ✔ forcats 0.5.2 
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
-
-``` r
-library(lubridate)
-```
-
-    ## Loading required package: timechange
-    ## 
-    ## Attaching package: 'lubridate'
-    ## 
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     date, intersect, setdiff, union
-
-``` r
-library(ggplot2)
-```
-
 The .csv files were downloaded and uploaded to R studio. The read_csv()
 function was then used to read them. Of the 18 available files a few
 have been used because they have more samples compared to the ones not
 used. This decision was taken in order to have better results after
 difficulties in obtaining more data.
-
-``` r
-#create data frames from .csv files
-
-daily_activity <- read_csv("dailyActivity_merged.csv")
-```
-
-    ## Rows: 940 Columns: 15
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr  (1): ActivityDate
-    ## dbl (14): Id, TotalSteps, TotalDistance, TrackerDistance, LoggedActivitiesDi...
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-``` r
-daily_calories <- read_csv("dailyCalories_merged.csv")
-```
-
-    ## Rows: 940 Columns: 3
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr (1): ActivityDay
-    ## dbl (2): Id, Calories
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-``` r
-daily_sleep <- read_csv("sleepDay_merged.csv")
-```
-
-    ## Rows: 413 Columns: 5
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr (1): SleepDay
-    ## dbl (4): Id, TotalSleepRecords, TotalMinutesAsleep, TotalTimeInBed
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-``` r
-hourly_intensities <- read_csv("hourlyIntensities_merged.csv")
-```
-
-    ## Rows: 22099 Columns: 4
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr (1): ActivityHour
-    ## dbl (3): Id, TotalIntensity, AverageIntensity
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-
-``` r
-hourly_steps <- read_csv("hourlySteps_merged.csv")
-```
-
-    ## Rows: 22099 Columns: 3
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr (1): ActivityHour
-    ## dbl (2): Id, StepTotal
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
 **To view the data summary and structure.**
 
@@ -238,32 +140,56 @@ We view tibbles containing summaries of the data and also the data
 structure of each data frame. This gives an idea of the columns, the
 data types and the kinds of trends that can be found in the data.
 
-``` r
-#summaries of some of the data frames created. Changed str() function to note to make doc less clunky
-
-head(daily_activity)
-```
-
     ## # A tibble: 6 × 15
-    ##        Id ActivityDate TotalSteps TotalDistance TrackerDistance LoggedActivitie…
-    ##     <dbl> <chr>             <dbl>         <dbl>           <dbl>            <dbl>
-    ## 1  1.50e9 4/12/2016         13162          8.5             8.5                 0
-    ## 2  1.50e9 4/13/2016         10735          6.97            6.97                0
-    ## 3  1.50e9 4/14/2016         10460          6.74            6.74                0
-    ## 4  1.50e9 4/15/2016          9762          6.28            6.28                0
-    ## 5  1.50e9 4/16/2016         12669          8.16            8.16                0
-    ## 6  1.50e9 4/17/2016          9705          6.48            6.48                0
-    ## # … with 9 more variables: VeryActiveDistance <dbl>,
-    ## #   ModeratelyActiveDistance <dbl>, LightActiveDistance <dbl>,
-    ## #   SedentaryActiveDistance <dbl>, VeryActiveMinutes <dbl>,
-    ## #   FairlyActiveMinutes <dbl>, LightlyActiveMinutes <dbl>,
-    ## #   SedentaryMinutes <dbl>, Calories <dbl>
+    ##           Id ActivityDate TotalSteps TotalDistance TrackerDistance
+    ##        <dbl> <chr>             <dbl>         <dbl>           <dbl>
+    ## 1 1503960366 04/12/2016        13162          8.5             8.5 
+    ## 2 1503960366 4/13/2016         10735          6.97            6.97
+    ## 3 1503960366 4/14/2016         10460          6.74            6.74
+    ## 4 1503960366 4/15/2016          9762          6.28            6.28
+    ## 5 1503960366 4/16/2016         12669          8.16            8.16
+    ## 6 1503960366 4/17/2016          9705          6.48            6.48
+    ## # ℹ 10 more variables: LoggedActivitiesDistance <dbl>,
+    ## #   VeryActiveDistance <dbl>, ModeratelyActiveDistance <dbl>,
+    ## #   LightActiveDistance <dbl>, SedentaryActiveDistance <dbl>,
+    ## #   VeryActiveMinutes <dbl>, FairlyActiveMinutes <dbl>,
+    ## #   LightlyActiveMinutes <dbl>, SedentaryMinutes <dbl>, Calories <dbl>
 
-``` r
-#str(daily_activity)
-
-head(daily_calories)
-```
+    ## spc_tbl_ [940 × 15] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+    ##  $ Id                      : num [1:940] 1.5e+09 1.5e+09 1.5e+09 1.5e+09 1.5e+09 ...
+    ##  $ ActivityDate            : chr [1:940] "04/12/2016" "4/13/2016" "4/14/2016" "4/15/2016" ...
+    ##  $ TotalSteps              : num [1:940] 13162 10735 10460 9762 12669 ...
+    ##  $ TotalDistance           : num [1:940] 8.5 6.97 6.74 6.28 8.16 ...
+    ##  $ TrackerDistance         : num [1:940] 8.5 6.97 6.74 6.28 8.16 ...
+    ##  $ LoggedActivitiesDistance: num [1:940] 0 0 0 0 0 0 0 0 0 0 ...
+    ##  $ VeryActiveDistance      : num [1:940] 1.88 1.57 2.44 2.14 2.71 ...
+    ##  $ ModeratelyActiveDistance: num [1:940] 0.55 0.69 0.4 1.26 0.41 ...
+    ##  $ LightActiveDistance     : num [1:940] 6.06 4.71 3.91 2.83 5.04 ...
+    ##  $ SedentaryActiveDistance : num [1:940] 0 0 0 0 0 0 0 0 0 0 ...
+    ##  $ VeryActiveMinutes       : num [1:940] 25 21 30 29 36 38 42 50 28 19 ...
+    ##  $ FairlyActiveMinutes     : num [1:940] 13 19 11 34 10 20 16 31 12 8 ...
+    ##  $ LightlyActiveMinutes    : num [1:940] 328 217 181 209 221 164 233 264 205 211 ...
+    ##  $ SedentaryMinutes        : num [1:940] 728 776 1218 726 773 ...
+    ##  $ Calories                : num [1:940] 1985 1797 1776 1745 1863 ...
+    ##  - attr(*, "spec")=
+    ##   .. cols(
+    ##   ..   Id = col_double(),
+    ##   ..   ActivityDate = col_character(),
+    ##   ..   TotalSteps = col_double(),
+    ##   ..   TotalDistance = col_double(),
+    ##   ..   TrackerDistance = col_double(),
+    ##   ..   LoggedActivitiesDistance = col_double(),
+    ##   ..   VeryActiveDistance = col_double(),
+    ##   ..   ModeratelyActiveDistance = col_double(),
+    ##   ..   LightActiveDistance = col_double(),
+    ##   ..   SedentaryActiveDistance = col_double(),
+    ##   ..   VeryActiveMinutes = col_double(),
+    ##   ..   FairlyActiveMinutes = col_double(),
+    ##   ..   LightlyActiveMinutes = col_double(),
+    ##   ..   SedentaryMinutes = col_double(),
+    ##   ..   Calories = col_double()
+    ##   .. )
+    ##  - attr(*, "problems")=<externalptr>
 
     ## # A tibble: 6 × 3
     ##           Id ActivityDay Calories
@@ -275,42 +201,50 @@ head(daily_calories)
     ## 5 1503960366 4/16/2016       1863
     ## 6 1503960366 4/17/2016       1728
 
-``` r
-#str(daily_calories)
-
-head(daily_sleep)
-```
+    ## spc_tbl_ [940 × 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+    ##  $ Id         : num [1:940] 1.5e+09 1.5e+09 1.5e+09 1.5e+09 1.5e+09 ...
+    ##  $ ActivityDay: chr [1:940] "4/12/2016" "4/13/2016" "4/14/2016" "4/15/2016" ...
+    ##  $ Calories   : num [1:940] 1985 1797 1776 1745 1863 ...
+    ##  - attr(*, "spec")=
+    ##   .. cols(
+    ##   ..   Id = col_double(),
+    ##   ..   ActivityDay = col_character(),
+    ##   ..   Calories = col_double()
+    ##   .. )
+    ##  - attr(*, "problems")=<externalptr>
 
     ## # A tibble: 6 × 5
-    ##           Id SleepDay           TotalSleepRecor… TotalMinutesAsl… TotalTimeInBed
-    ##        <dbl> <chr>                         <dbl>            <dbl>          <dbl>
-    ## 1 1503960366 4/12/2016 12:00:0…                1              327            346
-    ## 2 1503960366 4/13/2016 12:00:0…                2              384            407
-    ## 3 1503960366 4/15/2016 12:00:0…                1              412            442
-    ## 4 1503960366 4/16/2016 12:00:0…                2              340            367
-    ## 5 1503960366 4/17/2016 12:00:0…                1              700            712
-    ## 6 1503960366 4/19/2016 12:00:0…                1              304            320
+    ##           Id SleepDay        TotalSleepRecords TotalMinutesAsleep TotalTimeInBed
+    ##        <dbl> <chr>                       <dbl>              <dbl>          <dbl>
+    ## 1 1503960366 4/12/2016 12:0…                 1                327            346
+    ## 2 1503960366 4/13/2016 12:0…                 2                384            407
+    ## 3 1503960366 4/15/2016 12:0…                 1                412            442
+    ## 4 1503960366 4/16/2016 12:0…                 2                340            367
+    ## 5 1503960366 4/17/2016 12:0…                 1                700            712
+    ## 6 1503960366 4/19/2016 12:0…                 1                304            320
 
-``` r
-#str(daily_sleep)
-```
+    ## spc_tbl_ [413 × 5] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+    ##  $ Id                : num [1:413] 1.5e+09 1.5e+09 1.5e+09 1.5e+09 1.5e+09 ...
+    ##  $ SleepDay          : chr [1:413] "4/12/2016 12:00:00 AM" "4/13/2016 12:00:00 AM" "4/15/2016 12:00:00 AM" "4/16/2016 12:00:00 AM" ...
+    ##  $ TotalSleepRecords : num [1:413] 1 2 1 2 1 1 1 1 1 1 ...
+    ##  $ TotalMinutesAsleep: num [1:413] 327 384 412 340 700 304 360 325 361 430 ...
+    ##  $ TotalTimeInBed    : num [1:413] 346 407 442 367 712 320 377 364 384 449 ...
+    ##  - attr(*, "spec")=
+    ##   .. cols(
+    ##   ..   Id = col_double(),
+    ##   ..   SleepDay = col_character(),
+    ##   ..   TotalSleepRecords = col_double(),
+    ##   ..   TotalMinutesAsleep = col_double(),
+    ##   ..   TotalTimeInBed = col_double()
+    ##   .. )
+    ##  - attr(*, "problems")=<externalptr>
 
 An inconsistency noticed in the daily_activity data frame makes the team
 want to know how often users have their watches on. From the difference
 in time it can be assumed that those users do not use their devices all
 day. More data needed.
 
-``` r
-daily_activity$minutes_total <- daily_activity$VeryActiveMinutes + daily_activity$FairlyActiveMinutes + daily_activity$LightlyActiveMinutes + daily_activity$SedentaryMinutes        #Sum of total minutes as seen in the data. It helps compare active minutes to the number of minutes in a day - 1440 minutes.
-
-sum(daily_activity$minutes_total > 1440)   #Tells us how many users are active all day
-```
-
     ## [1] 0
-
-``` r
-sum(daily_activity$minutes_total < 1440)   #Tells how many users are not active all day
-```
 
     ## [1] 462
 
@@ -325,21 +259,9 @@ confirms there are 33 unique Ids. Like with the daily_sleep data frame,
 some others had insufficient data due to a lack of entry. For that
 reason, they were neglected.
 
-``` r
-n_distinct(daily_activity$Id)
-```
-
     ## [1] 33
 
-``` r
-n_distinct(daily_calories$Id)
-```
-
     ## [1] 33
-
-``` r
-n_distinct(daily_sleep$Id)
-```
 
     ## [1] 24
 
@@ -348,21 +270,9 @@ n_distinct(daily_sleep$Id)
 Checking for missing values. The data frames being used are complete and
 do not contain any missing values.
 
-``` r
-sum(is.na(daily_activity))
-```
-
     ## [1] 0
 
-``` r
-sum(is.na(daily_calories))
-```
-
     ## [1] 0
-
-``` r
-sum(is.na(daily_sleep))
-```
 
     ## [1] 0
 
@@ -370,37 +280,15 @@ sum(is.na(daily_sleep))
 
 To find duplicates in each data frame
 
-``` r
-sum(duplicated(daily_activity))
-```
-
     ## [1] 0
 
-``` r
-sum(duplicated(daily_calories))
-```
-
     ## [1] 0
-
-``` r
-sum(duplicated(daily_sleep))
-```
 
     ## [1] 3
 
 Removing dublicates
 
-``` r
-daily_sleep <- daily_sleep %>% 
-  distinct() %>% 
-  drop_na()
-```
-
 Checking removal of duplicates in the daily_sleep data frame
-
-``` r
-sum(duplicated(daily_sleep))
-```
 
     ## [1] 0
 
@@ -408,13 +296,6 @@ sum(duplicated(daily_sleep))
 
 The column names of the data frames used were renamed for consistency,
 putting them all in lower case.
-
-``` r
-#Created new data frames that have the columns in lower case
-
-daily_activity_df <- rename_with(daily_activity, tolower)
-colnames(daily_activity_df)
-```
 
     ##  [1] "id"                       "activitydate"            
     ##  [3] "totalsteps"               "totaldistance"           
@@ -425,53 +306,53 @@ colnames(daily_activity_df)
     ## [13] "lightlyactiveminutes"     "sedentaryminutes"        
     ## [15] "calories"                 "minutes_total"
 
-``` r
-daily_calories_df <- rename_with(daily_calories, tolower)
-colnames(daily_calories_df)
-```
-
     ## [1] "id"          "activityday" "calories"
-
-``` r
-daily_sleep_df <- rename_with(daily_sleep, tolower)
-colnames(daily_sleep_df)
-```
 
     ## [1] "id"                 "sleepday"           "totalsleeprecords" 
     ## [4] "totalminutesasleep" "totaltimeinbed"
-
-``` r
-hourly_steps_df <- rename_with(hourly_steps, tolower)
-```
 
 **Data formats**
 
 The sleepday column is of date-time format. It was converted to ensure
 that all formats are consistent.
 
-``` r
-#The Rename() function changes the names of variables using new_name = old_name syntax
-#The mutate() function is used to change date/ date-time formats here
-
-daily_activity_df <- daily_activity_df %>%
-  rename("date" = "activitydate") %>%
-  mutate(date = as_date(date, format = "%m/%d/%Y"))
-
-daily_sleep_df <- daily_sleep_df %>%
-  rename("date" = "sleepday") %>%
-  mutate(date = as_date(date,format ="%m/%d/%Y %I:%M:%S %p"))
-
-hourly_steps_df <- hourly_steps_df %>%
-  rename("date_time" = "activityhour") %>%
-  mutate(date_time = as.POSIXct(date_time,format ="%m/%d/%Y %I:%M:%S %p" , tz=Sys.timezone()))
-```
-
 Summary of the updated data frames
 
-``` r
-#head(daily_sleep_df)
-#head(hourly_steps_df)
-```
+    ## # A tibble: 6 × 16
+    ##           id date       totalsteps totaldistance trackerdistance
+    ##        <dbl> <date>          <dbl>         <dbl>           <dbl>
+    ## 1 1503960366 2016-04-12      13162          8.5             8.5 
+    ## 2 1503960366 2016-04-13      10735          6.97            6.97
+    ## 3 1503960366 2016-04-14      10460          6.74            6.74
+    ## 4 1503960366 2016-04-15       9762          6.28            6.28
+    ## 5 1503960366 2016-04-16      12669          8.16            8.16
+    ## 6 1503960366 2016-04-17       9705          6.48            6.48
+    ## # ℹ 11 more variables: loggedactivitiesdistance <dbl>,
+    ## #   veryactivedistance <dbl>, moderatelyactivedistance <dbl>,
+    ## #   lightactivedistance <dbl>, sedentaryactivedistance <dbl>,
+    ## #   veryactiveminutes <dbl>, fairlyactiveminutes <dbl>,
+    ## #   lightlyactiveminutes <dbl>, sedentaryminutes <dbl>, calories <dbl>,
+    ## #   minutes_total <dbl>
+
+    ## # A tibble: 6 × 5
+    ##           id date       totalsleeprecords totalminutesasleep totaltimeinbed
+    ##        <dbl> <date>                 <dbl>              <dbl>          <dbl>
+    ## 1 1503960366 2016-04-12                 1                327            346
+    ## 2 1503960366 2016-04-13                 2                384            407
+    ## 3 1503960366 2016-04-15                 1                412            442
+    ## 4 1503960366 2016-04-16                 2                340            367
+    ## 5 1503960366 2016-04-17                 1                700            712
+    ## 6 1503960366 2016-04-19                 1                304            320
+
+    ## # A tibble: 6 × 3
+    ##           id date_time steptotal
+    ##        <dbl> <dttm>        <dbl>
+    ## 1 1503960366 NA              373
+    ## 2 1503960366 NA              160
+    ## 3 1503960366 NA              151
+    ## 4 1503960366 NA                0
+    ## 5 1503960366 NA                0
+    ## 6 1503960366 NA                0
 
 **Data frames merged**
 
@@ -479,12 +360,27 @@ The daily activity data frame contains data found in the daily calories
 data frame. We merged the daily activity data frame and the daily sleep
 data frame by date.
 
-``` r
-#Merged daily_activity_df and daily_sleep_df into a new data frame using id and date vectors.
-
-daily_activity_sleep_df <- merge(daily_activity_df, daily_sleep_df, by = c ("id", "date"))
-#glimpse(daily_activity_sleep_df)
-```
+    ## Rows: 410
+    ## Columns: 19
+    ## $ id                       <dbl> 1503960366, 1503960366, 1503960366, 150396036…
+    ## $ date                     <date> 2016-04-12, 2016-04-13, 2016-04-15, 2016-04-…
+    ## $ totalsteps               <dbl> 13162, 10735, 9762, 12669, 9705, 15506, 10544…
+    ## $ totaldistance            <dbl> 8.50, 6.97, 6.28, 8.16, 6.48, 9.88, 6.68, 6.3…
+    ## $ trackerdistance          <dbl> 8.50, 6.97, 6.28, 8.16, 6.48, 9.88, 6.68, 6.3…
+    ## $ loggedactivitiesdistance <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+    ## $ veryactivedistance       <dbl> 1.88, 1.57, 2.14, 2.71, 3.19, 3.53, 1.96, 1.3…
+    ## $ moderatelyactivedistance <dbl> 0.55, 0.69, 1.26, 0.41, 0.78, 1.32, 0.48, 0.3…
+    ## $ lightactivedistance      <dbl> 6.06, 4.71, 2.83, 5.04, 2.51, 5.03, 4.24, 4.6…
+    ## $ sedentaryactivedistance  <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+    ## $ veryactiveminutes        <dbl> 25, 21, 29, 36, 38, 50, 28, 19, 41, 39, 73, 3…
+    ## $ fairlyactiveminutes      <dbl> 13, 19, 34, 10, 20, 31, 12, 8, 21, 5, 14, 23,…
+    ## $ lightlyactiveminutes     <dbl> 328, 217, 209, 221, 164, 264, 205, 211, 262, …
+    ## $ sedentaryminutes         <dbl> 728, 776, 726, 773, 539, 775, 818, 838, 732, …
+    ## $ calories                 <dbl> 1985, 1797, 1745, 1863, 1728, 2035, 1786, 177…
+    ## $ minutes_total            <dbl> 1094, 1033, 998, 1040, 761, 1120, 1063, 1076,…
+    ## $ totalsleeprecords        <dbl> 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+    ## $ totalminutesasleep       <dbl> 327, 384, 412, 340, 700, 304, 360, 325, 361, …
+    ## $ totaltimeinbed           <dbl> 346, 407, 442, 367, 712, 320, 377, 364, 384, …
 
 ### Analyse
 
@@ -516,17 +412,6 @@ day. The categories according to the
 
 This was used to calculate the average daily steps for each user
 
-``` r
-#A summary of averages from the daily_activity_sleep_df grouped by id. 
-#Used pipes to link the sequence of the analysis steps, taking the output of one function and passing it into another function as an argument.   
-
-average_steps <- daily_activity_sleep_df %>%
-  group_by(id) %>%
-  summarise(avg_daily_steps = mean(totalsteps), avg_daily_calories = mean(calories), avg_daily_sleep = mean(totalminutesasleep))
-
-head(average_steps)
-```
-
     ## # A tibble: 6 × 4
     ##           id avg_daily_steps avg_daily_calories avg_daily_sleep
     ##        <dbl>           <dbl>              <dbl>           <dbl>
@@ -539,22 +424,6 @@ head(average_steps)
 
 Classification based on information stated above using average daily
 steps
-
-``` r
-#The case_when() lets us print an output value if a condition is met. The conditions here are based on average daily steps taken by each user.
-#The data frame is mutated to include a user_lifestlye variable showing each user's lifestyle based on their average daily steps
-
-user_lifestyle <- average_steps %>%
-  mutate(user_lifestyle = case_when(
-    avg_daily_steps < 5000 ~ "sedentary lifestyle",
-    avg_daily_steps >= 5000 & avg_daily_steps < 7499 ~ "physically inactive", 
-    avg_daily_steps >= 7500 & avg_daily_steps < 9999 ~ "moderately active", 
-    avg_daily_steps >= 10000 & avg_daily_steps< 12500~ "physically active",
-    avg_daily_steps >= 12500 ~ "very active"
-  ))
-
-head(user_lifestyle)
-```
 
     ## # A tibble: 6 × 5
     ##           id avg_daily_steps avg_daily_calories avg_daily_sleep user_lifestyle  
@@ -569,21 +438,6 @@ head(user_lifestyle)
 ***What percentage of people are living each lifestyle?*** Knowing this
 will let me create a clear visual representation.
 
-``` r
-percentage_by_lifestyle <- user_lifestyle %>%    #new data frame
-  group_by(user_lifestyle) %>%
-  summarise(total = n()) %>%    #aggregate the number of occurrences 
-  mutate(totals = sum(total)) %>%
-  group_by(user_lifestyle) %>%
-  summarise(total_percent = total / totals) %>%       #total percentage calculation
-  mutate(labels = scales::percent(total_percent))
-
-percentage_by_lifestyle$user_lifestyle <- factor(percentage_by_lifestyle$user_lifestyle , levels = c("very active", "physically active", "moderately active", "physically inactive", "sedentary lifestyle"))                    #The factor function takes a vector of values (numeric or character). In this case it is the life style of users (character)
-
-
-head(percentage_by_lifestyle)
-```
-
     ## # A tibble: 5 × 3
     ##   user_lifestyle      total_percent labels
     ##   <fct>                       <dbl> <chr> 
@@ -596,23 +450,15 @@ head(percentage_by_lifestyle)
 **Time of day most active** Knowing what time of day users are more
 active will help the analysis process.
 
-``` r
-hourly_steps_df <- hourly_steps_df %>%
-  separate(date_time, into = c("date", "time"), sep= " ") %>%
-  mutate(date = ymd(date)) 
-  
-head(hourly_steps_df)
-```
-
     ## # A tibble: 6 × 4
-    ##           id date       time     steptotal
-    ##        <dbl> <date>     <chr>        <dbl>
-    ## 1 1503960366 2016-04-12 00:00:00       373
-    ## 2 1503960366 2016-04-12 01:00:00       160
-    ## 3 1503960366 2016-04-12 02:00:00       151
-    ## 4 1503960366 2016-04-12 03:00:00         0
-    ## 5 1503960366 2016-04-12 04:00:00         0
-    ## 6 1503960366 2016-04-12 05:00:00         0
+    ##           id date   time  steptotal
+    ##        <dbl> <date> <chr>     <dbl>
+    ## 1 1503960366 NA     <NA>        373
+    ## 2 1503960366 NA     <NA>        160
+    ## 3 1503960366 NA     <NA>        151
+    ## 4 1503960366 NA     <NA>          0
+    ## 5 1503960366 NA     <NA>          0
+    ## 6 1503960366 NA     <NA>          0
 
 ***How are users using their devices?***
 
@@ -622,40 +468,11 @@ a marketing strategy for Bellabeat. It shows that a rather high
 percentage of users (38%) are not using their devices frequently. 50% of
 users use them frequently and 12% use them moderately.
 
-``` r
-#Create categories based on device usage
-
-quantified_usage <- daily_activity_sleep_df %>%
-  group_by(id) %>%
-  summarize(days_used=sum(n())) %>%
-  mutate(usage = case_when(
-    days_used >= 1 & days_used <= 10 ~ "infrequent use",
-    days_used >= 11 & days_used <= 20 ~ "moderate use", 
-    days_used >= 21 & days_used <= 31 ~ "frequent use", 
-  ))
-glimpse(quantified_usage)
-```
-
     ## Rows: 24
     ## Columns: 3
     ## $ id        <dbl> 1503960366, 1644430081, 1844505072, 1927972279, 2026352035, …
     ## $ days_used <int> 25, 4, 3, 5, 28, 1, 15, 28, 8, 26, 23, 28, 5, 27, 31, 26, 18…
     ## $ usage     <chr> "frequent use", "infrequent use", "infrequent use", "infrequ…
-
-``` r
-#To find what percentage of users are in each category
-percentage_by_usage <- quantified_usage %>%
-  group_by(usage) %>%
-  summarise(total = n()) %>%
-  mutate(totals = sum(total)) %>%
-  group_by(usage) %>%
-  summarise(total_percent = total / totals) %>%
-  mutate(labels = scales::percent(total_percent))
-
-percentage_by_usage$usage <- factor(percentage_by_usage$usage, levels = c("frequent use", "moderate use", "infrequent use"))
-
-head(percentage_by_usage)
-```
 
     ## # A tibble: 3 × 3
     ##   usage          total_percent labels
@@ -668,13 +485,6 @@ head(percentage_by_usage)
 
 It is important to know how often the users have their devices on their
 person.
-
-``` r
-#Merged daily_activity_df and quantified_usage into a new daily_usage data frame
-
-daily_usage <- merge(daily_activity_df, quantified_usage, by=c ("id"))
-head(daily_usage)
-```
 
     ##           id       date totalsteps totaldistance trackerdistance
     ## 1 1503960366 2016-05-07      11992          7.71            7.71
@@ -711,22 +521,6 @@ head(daily_usage)
     ## 4          1015        25 frequent use
     ## 5          1094        25 frequent use
     ## 6          1033        25 frequent use
-
-``` r
-#Used the daily_usage data frame to calculate the total minutes users wore their devices daily for
-#The minutes_total variable created earlier is used here
-
-mins_worn <- daily_usage %>% 
-  mutate(minutes_total = veryactiveminutes+fairlyactiveminutes+lightlyactiveminutes+sedentaryminutes) %>%
-  mutate (percent_mins_worn = (minutes_total/1440)*100) %>%
-  mutate (worn = case_when(
-    percent_mins_worn == 100 ~ "All day",
-    percent_mins_worn < 100 & percent_mins_worn >= 50~ "More than half day", 
-    percent_mins_worn < 50 & percent_mins_worn > 0 ~ "Less than half day"
-  ))
-
-head(mins_worn)
-```
 
     ##           id       date totalsteps totaldistance trackerdistance
     ## 1 1503960366 2016-05-07      11992          7.71            7.71
@@ -766,37 +560,12 @@ head(mins_worn)
 
 Further analysis of minutes users wear their devices for
 
-``` r
-#percentage of device usage by category
-percentage_mins_worn <- mins_worn %>%
-  group_by(worn) %>%
-  summarise(total = n()) %>%
-  mutate(totals = sum(total)) %>%
-  group_by(worn) %>%
-  summarise(percent_total = total / totals) %>%
-  mutate(labels = scales::percent(percent_total))
-head(percentage_mins_worn)
-```
-
     ## # A tibble: 3 × 3
     ##   worn               percent_total labels
     ##   <chr>                      <dbl> <chr> 
     ## 1 All day                   0.365  36%   
     ## 2 Less than half day        0.0351 4%    
     ## 3 More than half day        0.600  60%
-
-``` r
-#What percentage of the high_use category users wear their devices often
-high_use_mins <- mins_worn %>%
-  filter(usage == "frequent use")%>%
-  group_by(worn) %>%
-  summarise(total = n()) %>%
-  mutate(totals = sum(total)) %>%
-  group_by(worn) %>%
-  summarise(percent_total = total / totals) %>%
-  mutate(labels = scales::percent(percent_total))
-head(high_use_mins)
-```
 
     ## # A tibble: 3 × 3
     ##   worn               percent_total labels
@@ -805,38 +574,12 @@ head(high_use_mins)
     ## 2 Less than half day        0.0432 4.3%  
     ## 3 More than half day        0.889  88.9%
 
-``` r
-#What percentage of the mid_use category users wear their devices often?
-mid_use_mins <- mins_worn %>%
-  filter(usage == "moderate use") %>%
-  group_by(worn) %>%
-  summarise(total = n()) %>%
-  mutate(totals = sum(total)) %>%
-  group_by(worn) %>%
-  summarise(percent_total = total / totals) %>%
-  mutate(labels = scales::percent(percent_total))
-head(mid_use_mins)
-```
-
     ## # A tibble: 3 × 3
     ##   worn               percent_total labels
     ##   <chr>                      <dbl> <chr> 
     ## 1 All day                    0.267 27%   
     ## 2 Less than half day         0.04  4%    
     ## 3 More than half day         0.693 69%
-
-``` r
-#What percentage of the low_use category users wear their devices often?
-low_use_mins <- mins_worn%>%
-  filter (usage == "infrequent use") %>%
-  group_by(worn) %>%
-  summarise(total = n()) %>%
-  mutate(totals = sum(total)) %>%
-  group_by(worn) %>%
-  summarise(percent_total = total / totals) %>%
-  mutate(labels = scales::percent(percent_total))
-head(low_use_mins)
-```
 
     ## # A tibble: 3 × 3
     ##   worn               percent_total labels
@@ -852,20 +595,6 @@ Knowing which days users are least and most active can help us come up
 with a solution. A sleep pattern will also present great insight.
 Analysis reveals high active minutes. It also reveals a low amount of
 sleep by users.
-
-``` r
-weekday_active_sleep <- daily_activity_sleep_df %>%
-  mutate(weekday = weekdays(date))
-
-weekday_active_sleep$weekday <- ordered(weekday_active_sleep$weekday, levels=c("Monday", "Tuesday", "Wednesday", "Thursday",
-"Friday", "Saturday", "Sunday"))
-
- weekday_active_sleep <-weekday_active_sleep %>%
-  group_by(weekday) %>%
-  summarize (daily_active_mins = mean(minutes_total), daily_sleep = mean(totalminutesasleep/60))
-
-head(weekday_active_sleep)
-```
 
     ## # A tibble: 6 × 3
     ##   weekday   daily_active_mins daily_sleep
@@ -897,22 +626,6 @@ The chart reveals that a total amount of users (58.4%) are quite
 active - 4.2% very active, 16.7 physically active, and 37.5 moderately
 active. A combined 41.6% are not too active - 20.8% both sedentary
 lifestyle and physically inactive
-
-``` r
-#Colour palette codes tested for the chart - #218C8D #6CCECB #F9E559 #EF7126 #8EDC9D #473E3F #473E3F #E64A45 #DDDDDD #FF0080
-
-mycols4 <- c("#DDDDDD", "#FF0080", "#F9E559", "#EF7126", "#8EDC9D")   #My combination
-
-percentage_by_lifestyle %>% 
-  ggplot(aes(x = "", y = total_percent, fill = user_lifestyle)) + 
-  geom_bar(width = 1, stat = "identity", colour = "black") +
-  coord_polar("y", start = 0) +
-  geom_text(aes(label = labels), position = position_stack(vjust = 0.5)) +
-  labs(title = "Distribution by User Lifestyle") +
-  scale_fill_manual(values = mycols4) + 
-  theme_void()
-```
-
 ![](index_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
 
 **Correlation**
@@ -920,36 +633,12 @@ percentage_by_lifestyle %>%
 Established a correlation between daily steps and calories burned. The
 chart revealed that the most calories are burned on average by users
 taking more steps.
-
-``` r
-ggplot(data = daily_activity_sleep_df) + 
-  geom_point(mapping = aes(x = totalsteps, y = calories)) +
-  geom_jitter(mapping = aes(x = totalsteps, y = calories)) +
-  geom_smooth(mapping = aes(x = totalsteps, y = calories)) +
-  labs(title = "Daily steps vs Calories Burned", x = "total daily steps", y= "calories") +
-  annotate("text", x = 16000, y = 500, label = "positive correlation", colour = "black")
-```
-
-    ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
-
 ![](index_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
 
 **Period of steps**
 
 Viz for hourly steps per user. The result shows that a lot of steps are
 taken by the users during midday and/ or evenings.
-
-``` r
-hourly_steps_df %>%
-  group_by(time) %>%
-  summarize(avg_steps = mean(steptotal)) %>%
-  ggplot() +
-  geom_col(mapping = aes(x=time, y = avg_steps, fill = avg_steps)) + 
-  labs(title = "Hourly Steps During the Day", x="", y="") + 
-  scale_fill_gradient(low = "green", high = "#41924B") +
-  theme(axis.text.x = element_text(angle = 90))
-```
-
 ![](index_files/figure-gfm/unnamed-chunk-24-1.png)<!-- -->
 
 **Total active minutes vs calories**
@@ -959,73 +648,16 @@ the ‘veryactiveminutes’, ‘fairlyactiveminutes’, ‘lightlyactiveminutes�
 and ‘sedentaryminutes’ attributes. Using the sum of these minutes, it
 was determined that there is some correlation between the total daily
 active minutes and the calories burned.
-
-``` r
-#Viz of the total active minutes vs calories burned
-ggplot(data = daily_activity, mapping = aes(x = minutes_total, y = Calories)) + 
-  geom_point() +
-  ggtitle("Daily Activite minutes VS. Calories burned") +
-  geom_smooth()
-```
-
-    ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
-
 ![](index_files/figure-gfm/unnamed-chunk-25-1.png)<!-- -->
 
 **Frequency of device usage and percentage**
 
 During the survey period what percentage of users used their devices
-daily
-
-``` r
-#Colour options #CCFFFF #00CC00 #FFCC00 #FF0000 #5F021F
-
-percentage_by_usage %>%
-  ggplot(aes(x="",y=total_percent, fill=usage)) +
-  geom_bar(stat = "identity", width = 1)+
-  coord_polar("y", start=0)+
-  theme_classic()+
-  theme(axis.title.x= element_blank(),
-        axis.title.y = element_blank(),
-        panel.border = element_blank(), 
-        panel.grid = element_blank(), 
-        axis.ticks = element_blank(),
-        axis.text.x = element_blank(),
-        plot.title = element_text(hjust = 0.5, size=14, face = "bold")) +
-  geom_text(aes(label = labels),
-            position = position_stack(vjust = 0.5))+
-  scale_fill_manual(values = c("#3399FF","#FFCC00","#FF0000"),
-                    labels = c("frequent use - 21 to 31 days",
-                                 "moderate use - 11 to 20 days",
-                                 "infrequent use - 1 to 10 days"))+
-  labs(title="Daily Usage of Devices")
-```
-
-![](index_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
+daily ![](index_files/figure-gfm/unnamed-chunk-26-1.png)<!-- -->
 
 **Duration worn daily**
 
 From the analysis of minutes worn daily
-
-``` r
-  ggplot(percentage_mins_worn, aes(x = "",y=percent_total, fill = worn)) +
-  geom_bar(stat = "identity", width = 1) +
-  coord_polar("y", start = 0) +
-  theme_classic() +
-  theme(axis.title.x= element_blank(),
-        axis.title.y = element_blank(),
-        panel.border = element_blank(), 
-        panel.grid = element_blank(), 
-        axis.ticks = element_blank(),
-        axis.text.x = element_blank(),
-        plot.title = element_text(hjust = 0.5, size=14, face = "bold"),
-        plot.subtitle = element_text(hjust = 0.5)) +
-    scale_fill_manual(values = c("#732C7B", "#EFD9DC", "#9C8AA5")) +
-  geom_text(aes(label = labels),
-            position = position_stack(vjust = 0.5), size = 3.5) +
-  labs(title="Duration Worn Daily", subtitle = "Duration for which users wore devices")
-```
-
 ![](index_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
 
 **Most active days by total active minutes**
@@ -1039,26 +671,7 @@ We do not have age data, but we assume that the users fall in this
 range. According to the same source, Individual variation in sleep need
 is influenced by genetic, behavioral, medical, and environmental
 factors, which we do not have.
-
-``` r
-ggplot(weekday_active_sleep) +
-      geom_col(aes(weekday, daily_active_mins), fill = "#AAF200") +
-      geom_hline(yintercept = 750) +     #This assumes a recommended total active minutes of the value displayed
-      labs(title = "Daily Active Mins per Weekday", x= "", y = "") +
-      theme(axis.text.x = element_text(angle = 45,vjust = 0.5, hjust = 1))
-```
-
-![](index_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->
-
-``` r
-ggplot(weekday_active_sleep, aes(weekday, daily_sleep)) +
-      geom_col(fill = "#FF8000") +
-      geom_hline(yintercept = 8) +
-      labs(title = "Hours of Sleep per Weekday", x= "", y = "") +
-      theme(axis.text.x = element_text(angle = 45,vjust = 0.5, hjust = 1))
-```
-
-![](index_files/figure-gfm/unnamed-chunk-28-2.png)<!-- -->
+![](index_files/figure-gfm/unnamed-chunk-28-1.png)<!-- -->![](index_files/figure-gfm/unnamed-chunk-28-2.png)<!-- -->
 
 ### Summary and Recommendation
 
