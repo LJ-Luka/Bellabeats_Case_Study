@@ -1,5 +1,4 @@
 Capstone Case Study: Bellabeats
-================Capstone Case Study: Bellabeats
 ================
 Lumi Luka
 2022-12-29
