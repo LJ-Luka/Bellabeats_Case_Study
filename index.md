@@ -10,9 +10,9 @@ Bellabeat stands at an inflection point. As a wellness technology company focuse
 
 This analysis examined fitness tracker data from 33 users over one month to uncover actionable insights for Bellabeat's marketing strategy. **The findings reveal three critical opportunities:**
 
-1. **41% of users lead sedentary or physically inactive lifestyles**—a segment hungry for motivation and guidance
-2. **38% of users don't wear their devices consistently**—representing lost engagement and data
-3. **Users are chronically sleep-deprived**—averaging under 7 hours on 6 of 7 weekdays
+1. **41% of users lead sedentary or physically inactive lifestyles**, a segment hungry for motivation and guidance
+2. **38% of users don't wear their devices consistently**, representing lost engagement and data
+3. **Users are chronically sleep-deprived**, averaging under 7 hours on 6 of 7 weekdays
 
 These insights point to a clear strategic direction: Bellabeat should position itself not just as a tracker, but as a **wellness coach** that actively helps women build healthier habits.
 
@@ -66,8 +66,8 @@ When are users most active? The hourly step data reveals clear patterns:
 ![Hourly Steps Distribution](index_files/figure-gfm/unnamed-chunk-24-1.png)
 
 **Peak activity occurs during:**
-- **Midday (12pm - 2pm)** — likely lunch breaks
-- **Early evening (5pm - 7pm)** — post-work exercise
+- **Midday (12pm - 2pm)**, likely lunch breaks
+- **Early evening (5pm - 7pm)**, post-work exercise
 
 **What this means for Bellabeat:** Notification timing matters. Sending motivation or reminders during low-activity hours (morning, late evening) could help users add steps when they typically don't.
 
@@ -83,11 +83,11 @@ Even among those who do wear their devices, many don't keep them on all day:
 
 ![Daily Wear Duration](index_files/figure-gfm/unnamed-chunk-27-1.png)
 
-**What this means for Bellabeat:** Abandoned devices represent lost customers. The industry average shows significant drop-off in wearable usage after purchase. Bellabeat has an opportunity to differentiate by creating compelling reasons to keep the device on—whether through better comfort, longer battery life, or features that only work with continuous wear.
+**What this means for Bellabeat:** Abandoned devices represent lost customers. The industry average shows significant drop-off in wearable usage after purchase. Bellabeat has an opportunity to differentiate by creating compelling reasons to keep the device on. It could be through better comfort, longer battery life, or features that only work with continuous wear.
 
 ---
 
-### Finding 5: Users Are Sleep-Deprived
+### Finding 5: Users Are Sleep Deprived
 
 The [CDC recommends](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4434546/) adults aged 18-60 get at least 7 hours of sleep per night. Our users fall short nearly every day of the week:
 
@@ -97,7 +97,7 @@ The [CDC recommends](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4434546/) adul
 
 **Only Wednesday averages over 7 hours of sleep.** The rest of the week, users are chronically under-rested.
 
-**What this means for Bellabeat:** Sleep is a massive, underserved opportunity. Women juggling work, family, and personal wellness often sacrifice sleep first. A product that actively helps users protect their sleep—not just track it—could be transformative.
+**What this means for Bellabeat:** Sleep is a massive, underserved opportunity. Women juggling work, family, and personal wellness often sacrifice sleep first. A product that actively helps users protect their sleep, not just track it, could be transformative.
 
 ---
 
